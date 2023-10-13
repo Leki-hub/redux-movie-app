@@ -1,35 +1,24 @@
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-
-
 
 const APIKey = "87ca7df4";
 
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
-  async () => {
-    const movieText = "Power";
+  async (movieText) => {
     const response = await axios.get(`https://www.omdbapi.com/?apiKey=${APIKey}&s=${movieText}&type=movie`);
     return response.data;
   }
 );
 
-
-
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
-  async () => {
-    const seriesText = "United";
+  async (seriesText) => {
     const response = await axios.get(`https://www.omdbapi.com/?apiKey=${APIKey}&s=${seriesText}&type=series`
     );
     return response.data;
   }
 );
-
-
-
 
 export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
   "movies/fetchAsyncMovieOrShowDetail",
@@ -57,7 +46,7 @@ const movieSlice = createSlice({
     builder
       .addCase(fetchAsyncMovies.pending, () => {
 
-        console.log("Pending");
+        console.log("movies fetching Pending");
       })
       .addCase(fetchAsyncMovies.fulfilled, (state, { payload }) => {
         console.log("Fetched movies Successfully!");
