@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {  useLayoutEffect } from "react";
 import "./MovieDetail.scss";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const MovieDetail = () => {
   const dispatch = useDispatch();
   const data = useSelector(getSelectedMovieOrShow);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(fetchAsyncMovieOrShowDetail(imdbID));
     return () => {
       dispatch(removeSelectedMovieOrShow());
