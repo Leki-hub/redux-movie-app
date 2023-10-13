@@ -23,12 +23,14 @@ export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
   async () => {
     const seriesText = "Friends";
-    const response = await movieApi.get(
-      `?apiKey=${APIKey}&s=${seriesText}&type=series`
+    const response = await axios.get(`https://www.omdbapi.com/?apiKey=${APIKey}&s=${seriesText}&type=series`
     );
     return response.data;
   }
 );
+
+
+
 
 export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
   "movies/fetchAsyncMovieOrShowDetail",
